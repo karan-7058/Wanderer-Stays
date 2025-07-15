@@ -1,0 +1,22 @@
+<% layout('layouts/boilerplate') -%>
+<body>
+    <h3>all listings</h3>
+    <!-- <form action="/listings/new" method="get">
+        <button>create new listing</button>
+    </form> -->
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+        <% for(listing of allListings){ %>
+            <a href="/listings/<%=listing._id%> " class="listing-link">
+                <div class="card col listing-card" >
+                    <img src="<%= listing.image?.url || 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60' %>" class="card-img-top" alt="listing image" style="height: 20rem;"/>
+                    <div class="card-img-overlay"></div>
+                    <div class="card-body">
+                      <p class="card-text"><b><%=listing.title%></b></p>
+                      <p class="card-text">&#8377;<%=listing.price%>/night</p>
+                    </div>
+                  </div>
+            </a>
+        <% } %>
+    </div>
+   
+</body>

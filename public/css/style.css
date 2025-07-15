@@ -1,0 +1,99 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.contain{
+    flex: 1;
+    
+}
+
+/* NAVBAR styles */
+
+.navbar{
+    width: 100%;
+    background-color: white;
+    height: 5rem;
+}
+
+.navbar-brand{
+    font-size: 3rem;
+    font-weight: bold;
+    color: rgb(199, 6, 6);
+}
+
+.nav-link {
+    font-size: 1.5rem;
+    color: rgb(2, 2, 2);
+}
+
+/* FOOTER styles */
+
+.f-info {
+    background-color: rgb(235, 224, 217);
+    height: auto; /* Adjust height to fit content */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center;
+    align-items: center;
+}
+
+.f-info-socials,
+.f-info-brand,
+.f-info-links {
+    width: 100%; /* Take full width */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    margin: 0.5rem 0; /* Add spacing between elements */
+    gap: 1rem; /* Add gap between flex items */
+    
+}
+
+
+.f-info-socials i{
+    font-size: 1.5rem; /* Adjust icon size */
+    
+}
+
+
+/* cards */
+
+.listing-card{
+    border: none;
+    margin-bottom: 2rem
+    
+   
+}
+
+.card-img-top{
+    border-radius: 1.2rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-body{
+    padding: 0;
+}
+
+.row{
+    margin-left: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 2rem
+    
+}
+
+.listing-link{
+    text-decoration: none;
+    
+}
+
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
