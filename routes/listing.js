@@ -3,7 +3,7 @@ const router=express.Router();
 const Listing=require("../models/listing.js");
 const ExpressError=require("../utils/ExpressError.js");
 const wrapAsync=require("../utils/wrapAsync.js");
-const {listingSchema, reviewSchema}=require("../schema.js");
+const {listingSchema}=require("../schema.js");
 
 //this is a middleware to validate the request body for creating or updating  a listing
 const validateListing=(req,res,next)=>{
