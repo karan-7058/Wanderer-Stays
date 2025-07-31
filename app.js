@@ -11,6 +11,7 @@ const {listingSchema, reviewSchema}=require("./schema.js");
 const Review=require("./models/review.js");
 
 const listings=require("./routes/listing.js");
+const reviews=require("./routes/review.js");
 
 
 
@@ -38,60 +39,8 @@ app.get("/",(req,res)=>{
 
 
 
-//this is a middleware to validate the request body for creating or updating a review
-const validateReview=(req,res,next)=>{
-    let {error}=reviewSchema.validate(req.body);
-    if(error){
-        throw new ExpressError(400, error);
-    }else{
-        next();
-    }
-}
-
-
-app.use("/listings" , listings)
-
-
-
-
-
-//this route is for posting a review to the specific listing
-app.post("/listings/:id/reviews", validateReview, wrapAsync(async(req,res)=>{
-    const {id}=req.params;
-    const listing=await Listing.findById(id);
-    const review=new Review(req.body.review);
-    listing.reviews.push(review);
-
-    await review.save();
-    await listing.save();
-    
-    res.redirect(`/listings/${id}`);
-
-}))
-
-//this route is for deleting a review from the specific listing
-app.delete("/listings/:id/reviews/:reviewId", wrapAsync(async(req,res)=>{
-    let {id, reviewId}=req.params;
-    await  Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
-    await Review.findByIdAndDelete(reviewId);
-    res.redirect(`/listings/${id}`);
-}))
-
-// app.get("/testlisting", (req,res)=>{
-//     const listing=new Listing({
-//         title:"new villa",
-//         description:"this is 3 bhk villa",
-//         location:"goa",
-//         price:10000,
-//         country:"india",
-//  });
-
-//    listing.save();
-//    res.send("listing created");
-//    console.log(listing);
-
-    
-// });
+app.use("/listings" , listings);
+app.use("/listings/:id/reviews",reviews);
 
 
 
