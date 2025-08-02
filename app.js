@@ -4,6 +4,7 @@ const mongoose=require("mongoose");
 const Listing=require("./models/listing.js");
 const path=require("path");
 const methodOverride=require("method-override");
+const session=require("express-session");
 const ejsMate=require("ejs-mate");
 const ExpressError=require("./utils/ExpressError.js");
 const wrapAsync=require("./utils/wrapAsync.js");
@@ -13,15 +14,23 @@ const Review=require("./models/review.js");
 const listings=require("./routes/listing.js");
 const reviews=require("./routes/review.js");
 
+const sessionOptions={
+    secret:"this is a secret",
+    resave:false,
+    saveUninitialized:true,
+    cookie:{
+        expires: Date.now() +1000*60*60*24*7,
+        maxAge:1000*60*60*24*7,
+        httpOnly:true
+    }
 
+}
 
 
 const MONGO_URL="mongodb://127.0.0.1:27017/WanderLust";
 
-app.listen(3000,()=>{
-    console.log("server is running");
-})
 
+app.use(session(sessionOptions));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(methodOverride("_method"));
@@ -66,6 +75,10 @@ main().then((res)=>{
 }).catch((err)=>{
     console.log(err);
 });
+
+app.listen(3000,()=>{
+    console.log("server is running");
+})
 
 
 
